@@ -25,4 +25,17 @@ public class CarTest {
         when(Randoms.pickNumberInRange(anyInt(), anyInt())).thenReturn(9);
         assertThat(new Car().goOrStop()).isEqualTo(true);
     }
+
+    @Test
+    void start() {
+        Car a = Mockito.spy(Car.class);
+
+        when(a.goOrStop()).thenReturn(true);
+        a.start();
+        assertThat(a.getResult()).isEqualTo(1);
+
+        when(a.goOrStop()).thenReturn(false);
+        a.start();
+        assertThat(a.getResult()).isEqualTo(1);
+    }
 }
