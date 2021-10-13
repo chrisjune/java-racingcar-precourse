@@ -12,9 +12,11 @@ public class Application {
         List<String> driverNameList = getDriverNameList();
         System.out.println("시도할 회수는 몇회인가요?");
         int timesLeft = getTimesLeft();
+
         System.out.println("pobi : -");
         System.out.println("woni : ");
-        System.out.println("최종 우승자는 pobi 입니다.");
+        String result = new CarGame(driverNameList).playMultiplesBy(timesLeft);
+        System.out.println("최종 우승자는 " + result + " 입니다.");
     }
 
     private static int getTimesLeft() {
