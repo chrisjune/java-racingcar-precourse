@@ -6,11 +6,11 @@ import java.util.List;
 public class Cars {
     private final List<Car> carList;
 
-    public Cars(List<Car> carList) {
-        this.carList = carList;
+    public Cars(List<String> gamerNameList) {
+        this.carList = mapCars(gamerNameList);
     }
 
-    public static List<Car> mapCars(List<String> gamerNameList) {
+    static List<Car> mapCars(List<String> gamerNameList) {
         List<Car> carList = new ArrayList<>();
         for (String gamerName : gamerNameList) {
             carList.add(new Car(gamerName, 0));
@@ -18,7 +18,7 @@ public class Cars {
         return carList;
     }
 
-    public void runOneTimes() {
+    public void runAllCars() {
         for (Car car : carList) {
             car.run();
         }

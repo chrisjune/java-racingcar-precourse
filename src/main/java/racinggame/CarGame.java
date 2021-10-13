@@ -8,7 +8,7 @@ public class CarGame {
 
     public CarGame(List<String> gamerNameList) {
         this.driverNameList = gamerNameList;
-        this.cars = new Cars(Cars.mapCars(gamerNameList));
+        this.cars = new Cars(gamerNameList);
     }
 
     public String getGamerNames() {
@@ -17,7 +17,7 @@ public class CarGame {
 
     public String playMultiplesBy(int times) {
         for (int i = 0; i < times; i++) {
-            this.cars.runOneTimes();
+            this.cars.runAllCars();
         }
         return getGameResult();
     }
