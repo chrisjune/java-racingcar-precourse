@@ -26,24 +26,33 @@ public class Cars {
 
     public String getTopDriverNameList() {
         List<String> nameList = new ArrayList<>();
-        for (Car car : getTopDriverList()) {
+        for (Car car : getFastestDriverList()) {
             nameList.add(car.getGamerName());
         }
         return String.join(",", nameList);
     }
 
-    private List<Car> getTopDriverList() {
-        Car maxPositionCar = new Car("", 0);
-        List<Car> topDriverList = new ArrayList<>();
+    private List<Car> getFastestDriverList() {
+        List<Car> fastestDriverList = new ArrayList<>();
         for (Car car : carList) {
-            if (car.isEqualTo(maxPositionCar)) {
-                topDriverList.add(car);
-            }
-            if (car.isFasterThan(maxPositionCar)) {
-                topDriverList = new ArrayList<>();
-                topDriverList.add(car);
-                maxPositionCar = car;
-            }
+            fastestDriverList = calculatePositionByCar(fastestDriverList, car);
+        }
+        return fastestDriverList;
+    }
+
+    private List<Car> calculatePositionByCar(List<Car> topDriverList, Car car) {
+        if (topDriverList.isEmpty()){
+            topDriverList.add(car);
+            return topDriverList;
+        }
+
+        Car maxPositionCar = topDriverList.get(0);
+        if (car.isEqualTo(maxPositionCar)) {
+            topDriverList.add(car);
+        }
+        if (car.isFasterThan(maxPositionCar)) {
+            topDriverList = new ArrayList<>();
+            topDriverList.add(car);
         }
         return topDriverList;
     }
