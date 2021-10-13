@@ -8,7 +8,7 @@ public class CarGame {
 
     public CarGame(List<String> gamerNameList) {
         this.driverNameList = gamerNameList;
-        this.cars = new Cars(gamerNameList);
+        this.cars = new Cars(Cars.mapCars(gamerNameList));
     }
 
     public String getGamerNames() {

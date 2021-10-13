@@ -6,11 +6,16 @@ import java.util.List;
 public class Cars {
     private final List<Car> carList;
 
-    public Cars(List<String> gamerNameList) {
-        this.carList = new ArrayList<>();
+    public Cars(List<Car> carList) {
+        this.carList = carList;
+    }
+
+    public static List<Car> mapCars(List<String> gamerNameList) {
+        List<Car> carList = new ArrayList<>();
         for (String gamerName : gamerNameList) {
-            this.carList.add(new Car(gamerName));
+            carList.add(new Car(gamerName, 0));
         }
+        return carList;
     }
 
     public void runOneTimes() {
@@ -20,7 +25,27 @@ public class Cars {
     }
 
     public String getTopDriverNameList() {
-        return "pobi";
+        List<String> nameList = new ArrayList<>();
+        for (Car car : getTopDriverList()) {
+            nameList.add(car.getGamerName());
+        }
+        return String.join(",", nameList);
+    }
+
+    private List<Car> getTopDriverList() {
+        Car maxPositionCar = new Car("", 0);
+        List<Car> topDriverList = new ArrayList<>();
+        for (Car car : carList) {
+            if (car.isEqualTo(maxPositionCar)) {
+                topDriverList.add(car);
+            }
+            if (car.isFasterThan(maxPositionCar)) {
+                topDriverList = new ArrayList<>();
+                topDriverList.add(car);
+                maxPositionCar = car;
+            }
+        }
+        return topDriverList;
     }
 
 }
